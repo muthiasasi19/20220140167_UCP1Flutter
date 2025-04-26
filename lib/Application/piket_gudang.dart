@@ -11,6 +11,9 @@ class _PiketGudangState extends State<PiketGudang> {
   final TextEditingController namalengkapController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController noHPController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController konfirmasiPasswordController =
+      TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 

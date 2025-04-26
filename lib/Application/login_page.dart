@@ -76,6 +76,11 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20),
 
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(
+                    50,
+                  ), // tombol akan full lebar parent
+                ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     print('Remember Me: $_rememberMe');
@@ -87,6 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 child: const Text('Masuk'),
               ),
+
               TextButton(
                 onPressed: () {
                   Navigator.push(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ucp_satu/Application/piket_gudang.dart';
+import 'package:ucp_satu/Application/data_pelanggan.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -93,9 +94,19 @@ class _HomePageState extends State<HomePage> {
                         ),
                         const SizedBox(width: 16),
                         Expanded(
-                          child: _menuButton(
-                            icon: Icons.group_add,
-                            title: 'Data Pelanggan',
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const DataPelanggan(),
+                                ),
+                              );
+                            },
+                            child: _menuButton(
+                              icon: Icons.group_add,
+                              title: 'Data Pelanggan',
+                            ),
                           ),
                         ),
                       ],

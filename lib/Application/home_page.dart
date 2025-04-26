@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucp_satu/Application/piket_gudang.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,90 +12,134 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              const SizedBox(height: 16),
-
-              // Gambar 1
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.network(
-                  'assets/images/profile.jpg',
-                  height: 120,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+              // Header
+              Container(
+                color: Colors.deepOrange,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 16,
+                ),
+                child: Row(
+                  children: [
+                    const CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage('assets/images/profile.jpg'),
+                    ),
+                    const SizedBox(width: 12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Selamat Datang',
+                          style: TextStyle(color: Colors.white, fontSize: 14),
+                        ),
+                        Text(
+                          'Admin',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.logout, color: Colors.white),
+                    ),
+                  ],
                 ),
               ),
 
-              const SizedBox(height: 24),
-
-              // Tombol-tombol Menu
-              GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  _menuCard(Icons.group, 'Data Piket'),
-                  _menuCard(Icons.people, 'Data Pelanggan'),
-                  _menuCard(
-                    Icons.inventory,
-                    'Barang Masuk/Keluar',
-                    isFullWidth: true,
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    'assets/images/profile.jpg',
+                    fit: BoxFit.cover,
                   ),
-                ],
+                ),
+              ),
+
+              // Menu Buttons
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const PiketGudang(),
+                                ),
+                              );
+                            },
+                            child: _menuButton(
+                              icon: Icons.calendar_today,
+                              title: 'Data Piket',
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: _menuButton(
+                            icon: Icons.group_add,
+                            title: 'Data Pelanggan',
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    _menuButton(
+                      icon: Icons.receipt_long,
+                      title: 'Barang Masuk/Keluar',
+                      isFullWidth: true,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
         ),
       ),
-      // Background  header
-      extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100),
-        child: Container(
-          decoration: const BoxDecoration(
-            color: Colors.deepOrange,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(32),
-              bottomRight: Radius.circular(32),
-            ),
-          ),
-          padding: const EdgeInsets.only(top: 50, left: 16, right: 16),
-          child: SafeArea(child: SizedBox(height: 90)),
-        ),
-      ),
     );
   }
 
-  Widget _menuCard(IconData icon, String title, {bool isFullWidth = false}) {
+  Widget _menuButton({
+    required IconData icon,
+    required String title,
+    bool isFullWidth = false,
+  }) {
     return Container(
       width: isFullWidth ? double.infinity : null,
-      height: 100,
+      height: 120,
       decoration: BoxDecoration(
         color: Colors.deepOrange,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(20),
       ),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, color: Colors.white, size: 28),
-            const SizedBox(height: 8),
-            Text(
-              title,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: Colors.white, size: 32),
+          const SizedBox(height: 8),
+          Text(
+            title,
+            style: const TextStyle(color: Colors.white, fontSize: 16),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }

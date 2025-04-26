@@ -35,10 +35,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 24),
 
-              const Text(
-                'Email',
-                style: TextStyle(fontWeight: FontWeight.bold),
-                textAlign: TextAlign.left,
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text('Email'),
               ),
               TextFormField(
                 controller: emailController,
@@ -59,10 +58,9 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 20),
 
-              const Text(
-                'Password',
-                style: TextStyle(fontWeight: FontWeight.bold),
-                textAlign: TextAlign.left,
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text('Password'),
               ),
 
               TextFormField(

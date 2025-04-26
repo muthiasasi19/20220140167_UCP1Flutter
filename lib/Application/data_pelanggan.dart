@@ -50,4 +50,297 @@ class _DataPelangganState extends State<DataPelanggan> {
       );
     }
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.red,
+        title: const Text(
+          'Data Pelanggan',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20),
+                Center(
+                  child: Text(
+                    'Tambah Data Pelanggan',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                // Nama
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Nama Cust',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                TextFormField(
+                  controller: namaController,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  decoration: const InputDecoration(
+                    hintText: 'Nama Cust',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    prefixIcon: Icon(Icons.person),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Cust tidak boleh kosong';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+
+                // Email dan No Telepon
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Email',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          TextFormField(
+                            controller: emailController,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            decoration: const InputDecoration(
+                              hintText: 'Email',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              prefixIcon: Icon(Icons.email),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Email tidak boleh kosong';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'No Telepon',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          TextFormField(
+                            controller: noTeleponController,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            decoration: const InputDecoration(
+                              hintText: ' No Telepon',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              prefixIcon: Icon(Icons.phone),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'No telepon tidak boleh kosong';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+
+                // Alamat
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Alamat',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                TextFormField(
+                  controller: alamatController,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  decoration: const InputDecoration(
+                    hintText: 'Alamat',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    prefixIcon: Icon(Icons.home),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Alamat tidak boleh kosong';
+                    }
+                    return null;
+                  },
+                  maxLines: 2,
+                ),
+                const SizedBox(height: 30),
+
+                // Provinsi dan Kode Pos
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Provinsi',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          TextFormField(
+                            controller: provinsiController,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            decoration: const InputDecoration(
+                              hintText: 'Provinsi',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              prefixIcon: Icon(Icons.map),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Provinsi tidak boleh kosong';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Kode Pos',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          TextFormField(
+                            controller: kodePosController,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            decoration: const InputDecoration(
+                              hintText: ' Kode Pos',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              prefixIcon: Icon(Icons.location_on),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Kode Pos tidak boleh kosong';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 30),
+
+                // Tombol Simpan
+                ElevatedButton(
+                  onPressed: tambahPelanggan,
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Text('Simpan ', style: TextStyle(fontSize: 18)),
+                ),
+
+                const SizedBox(height: 30),
+
+                // Tombol Reset
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      namaController.clear();
+                      emailController.clear();
+                      noTeleponController.clear();
+                      alamatController.clear();
+                      provinsiController.clear();
+                      kodePosController.clear();
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey,
+                    minimumSize: const Size.fromHeight(50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Text(
+                    'Reset',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

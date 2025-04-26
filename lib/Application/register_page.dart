@@ -38,6 +38,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 24),
 
                 // Nama Lengkap
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('Email'),
+                ),
+
                 TextFormField(
                   controller: namalengkapController,
                   decoration: const InputDecoration(

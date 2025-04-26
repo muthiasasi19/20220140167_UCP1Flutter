@@ -102,6 +102,13 @@ class _LoginPageState extends State<LoginPage> {
                         MaterialPageRoute(builder: (context) => RegisterPage()),
                       );
                     },
+                    child: const Text(
+                      'Daftarkan dirimu',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ],
               ),

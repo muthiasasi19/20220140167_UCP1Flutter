@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucp_satu/Application/login_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -49,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 TextFormField(
                   controller: namalengkapController,
                   decoration: const InputDecoration(
-                    labelText: 'Nama Lengkap',
+                    hintText: 'Nama Lengkap',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
@@ -82,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           TextFormField(
                             controller: emailController,
                             decoration: const InputDecoration(
-                              labelText: 'Email',
+                              hintText: 'Email',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
@@ -116,7 +117,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           TextFormField(
                             controller: noHPController,
                             decoration: const InputDecoration(
-                              labelText: 'No HP',
+                              hintText: 'No HP',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
@@ -157,7 +158,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             controller: passwordController,
                             obscureText: true,
                             decoration: const InputDecoration(
-                              labelText: 'Password',
+                              hintText: 'Password',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
@@ -192,13 +193,14 @@ class _RegisterPageState extends State<RegisterPage> {
                             controller: konfirmasiPasswordController,
                             obscureText: true,
                             decoration: const InputDecoration(
-                              labelText: 'Konfirmasi Password',
+                              hintText: 'Konfirmasi Password',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
                                 ),
                               ),
                               prefixIcon: Icon(Icons.lock_outline),
+                              errorText: null,
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -214,11 +216,25 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 35),
 
                 ElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      if (passwordController.text !=
+                          konfirmasiPasswordController.text) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Password dan Konfirmasi Password tidak cocok',
+                            ),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                        return;
+                      }
+                      print('Form valid, lakukan pendaftaran');
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
@@ -226,7 +242,29 @@ class _RegisterPageState extends State<RegisterPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: const Text('Daftar', style: TextStyle(fontSize: 16)),
+                  child: const Text('Daftar', style: TextStyle(fontSize: 20)),
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Sudah memiliki akun? Silahkan '),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      },
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

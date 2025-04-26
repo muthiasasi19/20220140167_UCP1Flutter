@@ -17,4 +17,24 @@ class _PiketGudangState extends State<PiketGudang> {
   Future<void> _pickDate() async {
     // Dikosongkan dulu
   }
+
+  void _tambahTugas() {
+    if (_namaController.text.isNotEmpty && _tugasController.text.isNotEmpty) {
+      setState(() {
+        _daftarTugas.add({
+          'nama': _namaController.text,
+          'tanggal': 'Tanggal belum dipilih',
+          'tugas': _tugasController.text,
+        });
+        _tugasController.clear();
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _namaController.dispose();
+    _tugasController.dispose();
+    super.dispose();
+  }
 }

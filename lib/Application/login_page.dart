@@ -91,16 +91,19 @@ class _LoginPageState extends State<LoginPage> {
                 child: const Text('Masuk'),
               ),
 
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => RegisterPage()),
-                  );
-                },
-                child: const Text(
-                  'Belum memiliki akun? Silahkan Daftar dirimu',
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Belum memiliki akun? '),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisterPage()),
+                      );
+                    },
+                  ),
+                ],
               ),
             ],
           ),

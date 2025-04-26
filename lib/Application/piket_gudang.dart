@@ -91,36 +91,43 @@ class _PiketGudangState extends State<PiketGudang> {
               Row(
                 children: [
                   Expanded(
-                    child: TextField(
-                      controller: _tugasController,
-                      decoration: InputDecoration(
-                        hintText: 'Menyapu',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
+                    flex: 1,
+                    child: SizedBox(
+                      height: 56,
+                      child: TextField(
+                        controller: _tugasController,
+                        decoration: InputDecoration(
+                          hintText: 'Menyapu',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(width: 10),
-                  ElevatedButton(
-                    onPressed: _tambahTugas,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
+                  Expanded(
+                    flex: 1,
+                    child: SizedBox(
+                      height: 56,
+                      child: ElevatedButton(
+                        onPressed: _tambahTugas,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: const Text(
+                          'Tambah',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 18,
-                      ),
-                    ),
-                    child: const Text(
-                      'Tambah',
-                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ],
               ),
+
               const SizedBox(height: 30),
               const Center(
                 child: Text(

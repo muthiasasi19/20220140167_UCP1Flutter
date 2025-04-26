@@ -40,7 +40,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 // Nama Lengkap
                 const Align(
                   alignment: Alignment.centerLeft,
-                  child: Text('Email'),
+                  child: Text(
+                    'Nama Lengkap',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
 
                 TextFormField(
@@ -65,40 +68,70 @@ class _RegisterPageState extends State<RegisterPage> {
                 Row(
                   children: [
                     Expanded(
-                      child: TextFormField(
-                        controller: emailController,
-                        decoration: const InputDecoration(
-                          labelText: 'Email',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Email',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
-                          prefixIcon: Icon(Icons.email),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Email tidak boleh kosong';
-                          }
-                          return null;
-                        },
+                          const SizedBox(height: 6),
+                          TextFormField(
+                            controller: emailController,
+                            decoration: const InputDecoration(
+                              labelText: 'Email',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              prefixIcon: Icon(Icons.email),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Email tidak boleh kosong';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      child: TextFormField(
-                        controller: noHPController,
-                        decoration: const InputDecoration(
-                          labelText: 'No HP',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'No HP',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
-                          prefixIcon: Icon(Icons.phone),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'No HP tidak boleh kosong';
-                          }
-                          return null;
-                        },
+                          const SizedBox(height: 6),
+                          TextFormField(
+                            controller: noHPController,
+                            decoration: const InputDecoration(
+                              labelText: 'No HP',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              prefixIcon: Icon(Icons.phone),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'No HP tidak boleh kosong';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -109,48 +142,79 @@ class _RegisterPageState extends State<RegisterPage> {
                 Row(
                   children: [
                     Expanded(
-                      child: TextFormField(
-                        controller: passwordController,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          labelText: 'Password',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Password',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
-                          prefixIcon: Icon(Icons.lock),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Password tidak boleh kosong';
-                          }
-                          return null;
-                        },
+                          const SizedBox(height: 6),
+                          TextFormField(
+                            controller: passwordController,
+                            obscureText: true,
+                            decoration: const InputDecoration(
+                              labelText: 'Password',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              prefixIcon: Icon(Icons.lock),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Password tidak boleh kosong';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      child: TextFormField(
-                        controller: konfirmasiPasswordController,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          labelText: 'Konfirmasi Password',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Konfirmasi Password',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
-                          prefixIcon: Icon(Icons.lock_outline),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Konfirmasi password tidak boleh kosong';
-                          } else if (value != passwordController.text) {
-                            return 'Password tidak sama';
-                          }
-                          return null;
-                        },
+                          const SizedBox(height: 6),
+                          TextFormField(
+                            controller: konfirmasiPasswordController,
+                            obscureText: true,
+                            decoration: const InputDecoration(
+                              labelText: 'Konfirmasi Password',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              prefixIcon: Icon(Icons.lock_outline),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Konfirmasi password tidak boleh kosong';
+                              } else if (value != passwordController.text) {
+                                return 'Password tidak sama';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
+                const SizedBox(height: 16),
               ],
             ),
           ),

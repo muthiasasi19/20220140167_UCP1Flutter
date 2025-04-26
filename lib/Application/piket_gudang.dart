@@ -121,5 +121,59 @@ class _PiketGudangState extends State<PiketGudang> {
                   ),
                 ],
               ),
+              const SizedBox(height: 30),
+              const Center(
+                child: Text(
+                  'Daftar Tugas Piket',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(height: 20),
+              _daftarTugas.isEmpty
+                  ? const Center(
+                    child: Text(
+                      'Belum ada Data',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  )
+                  : ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: _daftarTugas.length,
+                    itemBuilder: (context, index) {
+                      final tugas = _daftarTugas[index];
+                      return Container(
+                        margin: const EdgeInsets.only(bottom: 10),
+                        decoration: BoxDecoration(
+                          color: Colors.orange,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: ListTile(
+                          title: Text(
+                            tugas['tugas'] ?? '',
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => DetailPiket(
+                                      nama: tugas['nama'] ?? '',
+                                      tanggal: tugas['tanggal'] ?? '',
+                                      tugas: tugas['tugas'] ?? '',
+                                    ),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
 
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
 
               const Text(
                 'Password',
@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 23),
 
               ElevatedButton(
                 style: ElevatedButton.styleFrom(

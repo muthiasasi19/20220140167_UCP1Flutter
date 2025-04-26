@@ -60,6 +60,11 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 16),
 
+              const Text(
+                'Password',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+
               TextFormField(
                 controller: passwordController,
                 decoration: const InputDecoration(

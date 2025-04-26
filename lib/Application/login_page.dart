@@ -77,9 +77,7 @@ class _LoginPageState extends State<LoginPage> {
 
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(
-                    50,
-                  ), // tombol akan full lebar parent
+                  minimumSize: const Size.fromHeight(50),
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {

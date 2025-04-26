@@ -19,10 +19,37 @@ class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    super.initState();
+    namalengkapController.addListener(_onFieldChanged);
+    emailController.addListener(_onFieldChanged);
+    noHPController.addListener(_onFieldChanged);
+    passwordController.addListener(_onFieldChanged);
+    konfirmasiPasswordController.addListener(_onFieldChanged);
+  }
+
+  void _onFieldChanged() {
+    if (_formKey.currentState != null) {
+      _formKey.currentState!.validate();
+    }
+  }
+
+  @override
+  void dispose() {
+    namalengkapController.dispose();
+    emailController.dispose();
+    noHPController.dispose();
+    passwordController.dispose();
+    konfirmasiPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
         key: _formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
@@ -38,7 +65,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 24),
 
-                // Nama Lengkap
                 const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -46,7 +72,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-
                 TextFormField(
                   controller: namalengkapController,
                   decoration: const InputDecoration(
@@ -65,7 +90,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 16),
 
-                // Email dan No HP
                 Row(
                   children: [
                     Expanded(
@@ -139,7 +163,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 16),
 
-                // Password dan Konfirmasi Password
                 Row(
                   children: [
                     Expanded(
@@ -200,7 +223,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ),
                               ),
                               prefixIcon: Icon(Icons.lock_outline),
-                              errorText: null,
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {

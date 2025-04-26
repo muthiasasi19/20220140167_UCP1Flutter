@@ -72,5 +72,54 @@ class _PiketGudangState extends State<PiketGudang> {
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
+              const Text('Pilih Tanggal'),
+              const SizedBox(height: 8),
+              TextField(
+                enabled: false,
+                decoration: InputDecoration(
+                  hintText: 'Fitur ini belum aktif',
+                  prefixIcon: const Icon(Icons.calendar_today),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              const Text('Tugas Piket'),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _tugasController,
+                      decoration: InputDecoration(
+                        hintText: 'Menyapu',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: _tambahTugas,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 18,
+                      ),
+                    ),
+                    child: const Text(
+                      'Tambah',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
   }
 }

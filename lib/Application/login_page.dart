@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 controller: passwordController,
                 decoration: const InputDecoration(
-                  labelText: 'Password',
+                  hintText: 'Password',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(13)),
                   ),

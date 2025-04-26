@@ -14,8 +14,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  bool _rememberMe = false; // Menyimpan status checkbox
-
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
@@ -40,6 +38,7 @@ class _LoginPageState extends State<LoginPage> {
               const Text(
                 'Email',
                 style: TextStyle(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.left,
               ),
               TextFormField(
                 controller: emailController,
@@ -63,6 +62,7 @@ class _LoginPageState extends State<LoginPage> {
               const Text(
                 'Password',
                 style: TextStyle(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.left,
               ),
 
               TextFormField(
@@ -90,7 +90,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    print('Remember Me: $_rememberMe');
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => const HomePage()),

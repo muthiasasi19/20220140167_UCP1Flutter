@@ -56,7 +56,14 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 50),
+                Center(
+                  child: const CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage('assets/images/profile.jpg'),
+                  ),
+                ),
+
+                const SizedBox(height: 40),
                 Center(
                   child: Text(
                     'DAFTAR AKUN BARU ',

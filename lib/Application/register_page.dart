@@ -22,22 +22,6 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _obscureKonfirmasiPassword = true;
 
   @override
-  void initState() {
-    super.initState();
-    namalengkapController.addListener(_onFieldChanged);
-    emailController.addListener(_onFieldChanged);
-    noHPController.addListener(_onFieldChanged);
-    passwordController.addListener(_onFieldChanged);
-    konfirmasiPasswordController.addListener(_onFieldChanged);
-  }
-
-  void _onFieldChanged() {
-    if (_formKey.currentState != null) {
-      _formKey.currentState!.validate();
-    }
-  }
-
-  @override
   void dispose() {
     namalengkapController.dispose();
     emailController.dispose();
@@ -52,36 +36,36 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       body: Form(
         key: _formKey,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
+        autovalidateMode: AutovalidateMode.disabled,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  child: const CircleAvatar(
+                const Center(
+                  child: CircleAvatar(
                     radius: 50,
                     backgroundImage: AssetImage('assets/images/profile.jpg'),
                   ),
                 ),
                 const SizedBox(height: 40),
-                Center(
+                const Center(
                   child: Text(
-                    'DAFTAR AKUN BARU ',
+                    'DAFTAR AKUN BARU',
                     style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                   ),
                 ),
                 const SizedBox(height: 24),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Nama Lengkap',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
+
+                const Text(
+                  'Nama Lengkap',
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
+                const SizedBox(height: 6),
                 TextFormField(
                   controller: namalengkapController,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
                     hintText: 'Nama Lengkap',
                     border: OutlineInputBorder(
@@ -96,23 +80,24 @@ class _RegisterPageState extends State<RegisterPage> {
                     return null;
                   },
                 ),
+
                 const SizedBox(height: 16),
+
                 Row(
                   children: [
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Email',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                          const Text(
+                            'Email',
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: emailController,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             decoration: const InputDecoration(
                               hintText: 'Email',
                               border: OutlineInputBorder(
@@ -137,16 +122,15 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'No HP',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                          const Text(
+                            'No HP',
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: noHPController,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             decoration: const InputDecoration(
                               hintText: 'No HP',
                               border: OutlineInputBorder(
@@ -168,23 +152,24 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ],
                 ),
+
                 const SizedBox(height: 16),
+
                 Row(
                   children: [
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Password',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                          const Text(
+                            'Password',
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: passwordController,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             obscureText: _obscurePassword,
                             decoration: InputDecoration(
                               hintText: 'Password',
@@ -222,16 +207,15 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Konfirmasi Password',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                          const Text(
+                            'Konfirmasi Password',
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: konfirmasiPasswordController,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             obscureText: _obscureKonfirmasiPassword,
                             decoration: InputDecoration(
                               hintText: 'Konfirmasi Password',
@@ -269,23 +253,18 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ],
                 ),
+
                 const SizedBox(height: 35),
+
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      if (passwordController.text !=
-                          konfirmasiPasswordController.text) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Password dan Konfirmasi Password tidak cocok',
-                            ),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
-                        return;
-                      }
-                      print('Form valid, lakukan pendaftaran');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Pendaftaran berhasil!'),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -296,6 +275,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   child: const Text('Daftar', style: TextStyle(fontSize: 20)),
                 ),
+
+                const SizedBox(height: 20),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -304,7 +286,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                          ),
                         );
                       },
                       child: const Text(

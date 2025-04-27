@@ -284,4 +284,66 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
       ),
     );
   }
+
+  Widget buildStruk() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Spacer(),
+        const Center(
+          child: Icon(Icons.check_circle, size: 100, color: Colors.green),
+        ),
+        const SizedBox(height: 16),
+        const Center(
+          child: Text(
+            'Data Berhasil Disimpan!',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
+        const SizedBox(height: 24),
+        buildRow('Tanggal', formatTanggal(selectedDate!)),
+        buildRow('Jenis Transaksi', selectedJenisTransaksi!),
+        buildRow('Jenis Barang', selectedJenisBarang!),
+        buildRow('Jumlah Barang', jumlahBarangController.text),
+        buildRow(
+          'Harga Satuan',
+          formatRupiah(int.parse(hargaSatuanController.text)),
+        ),
+        buildRow('Total Harga', formatRupiah(hitungTotalHarga())),
+        const Spacer(),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red,
+            minimumSize: const Size.fromHeight(50),
+          ),
+          child: const Text('Selesai', style: TextStyle(fontSize: 18)),
+        ),
+      ],
+    );
+  }
+
+  Widget buildRow(String title, String value) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+              Text(value),
+            ],
+          ),
+        ),
+        const Divider(thickness: 1, color: Colors.grey),
+      ],
+    );
+  }
 }

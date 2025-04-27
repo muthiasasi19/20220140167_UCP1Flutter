@@ -67,4 +67,118 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
   //   jumlahBarangController.clear();
   //   hargaSatuanController.clear();
   // }
+
+
+  String formatTanggal(DateTime date) {
+    return '${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year}';
+  }
+
+  String formatRupiah(int value) {
+    String result = value.toString().replaceAllMapped(
+      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+      (Match m) => '${m[1]}.',
+    );
+    return 'Rp $result';
+  }
+
+  @override
+  void dispose() {
+    jumlahBarangController.dispose();
+    hargaSatuanController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Pendataan Barang'),
+        backgroundColor: Colors.red,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: isSubmitted ? buildStruk() : buildForm(),
+      ),
+    );
+  }
+
+  Widget buildForm() {
+    return Form(
+      key: _formKey,
+      child: ListView(
+        children: [
+          GestureDetector(
+            onTap: _pickDate,
+            child: AbsorbPointer(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Tanggal',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 6),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: 'Tanggal',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      prefixIcon: Icon(Icons.calendar_today),
+                    ),
+
+                    controller: TextEditingController(
+                      text:
+                          selectedDate != null
+                              ? formatTanggal(selectedDate!)
+                              : '',
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Pilih tanggal';
+                      }
+                      return null;
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          const Text(
+            'Jenis Transaksi',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 6),
+          DropdownButtonFormField<String>(
+            decoration: const InputDecoration(
+              hintText: 'Jenis Transaksi',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+            ),
+            value: selectedJenisTransaksi,
+            items:
+                jenisTransaksiList.map((value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+            onChanged: (value) {
+              setState(() {
+                selectedJenisTransaksi = value;
+              });
+            },
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Pilih jenis transaksi';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 16),
+
 }
+

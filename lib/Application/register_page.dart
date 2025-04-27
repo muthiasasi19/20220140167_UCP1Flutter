@@ -18,6 +18,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final _formKey = GlobalKey<FormState>();
 
+  bool _obscurePassword = true;
+  bool _obscureKonfirmasiPassword = true;
+
   @override
   void initState() {
     super.initState();
@@ -62,7 +65,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     backgroundImage: AssetImage('assets/images/profile.jpg'),
                   ),
                 ),
-
                 const SizedBox(height: 40),
                 Center(
                   child: Text(
@@ -71,7 +73,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 const SizedBox(height: 24),
-
                 const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -96,7 +97,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
                 const SizedBox(height: 16),
-
                 Row(
                   children: [
                     Expanded(
@@ -169,7 +169,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
                 const SizedBox(height: 16),
-
                 Row(
                   children: [
                     Expanded(
@@ -186,15 +185,27 @@ class _RegisterPageState extends State<RegisterPage> {
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: passwordController,
-                            obscureText: true,
-                            decoration: const InputDecoration(
+                            obscureText: _obscurePassword,
+                            decoration: InputDecoration(
                               hintText: 'Password',
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
                                 ),
                               ),
-                              prefixIcon: Icon(Icons.lock),
+                              prefixIcon: const Icon(Icons.lock),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _obscurePassword
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _obscurePassword = !_obscurePassword;
+                                  });
+                                },
+                              ),
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -221,15 +232,28 @@ class _RegisterPageState extends State<RegisterPage> {
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: konfirmasiPasswordController,
-                            obscureText: true,
-                            decoration: const InputDecoration(
+                            obscureText: _obscureKonfirmasiPassword,
+                            decoration: InputDecoration(
                               hintText: 'Konfirmasi Password',
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
                                 ),
                               ),
-                              prefixIcon: Icon(Icons.lock_outline),
+                              prefixIcon: const Icon(Icons.lock_outline),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _obscureKonfirmasiPassword
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _obscureKonfirmasiPassword =
+                                        !_obscureKonfirmasiPassword;
+                                  });
+                                },
+                              ),
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -246,7 +270,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
                 const SizedBox(height: 35),
-
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -273,7 +296,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   child: const Text('Daftar', style: TextStyle(fontSize: 20)),
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

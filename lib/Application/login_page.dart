@@ -13,10 +13,24 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool _obscurePassword = true;
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    emailController.addListener(() => setState(() {}));
+    passwordController.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
     return Scaffold(
       body: Form(
         key: _formKey,
@@ -41,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextFormField(
                 controller: emailController,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: const InputDecoration(
                   hintText: 'Email',
                   border: OutlineInputBorder(
@@ -62,9 +77,9 @@ class _LoginPageState extends State<LoginPage> {
                 alignment: Alignment.centerLeft,
                 child: Text('Password'),
               ),
-
               TextFormField(
                 controller: passwordController,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   hintText: 'Password',
@@ -92,6 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
+
               const SizedBox(height: 23),
 
               ElevatedButton(

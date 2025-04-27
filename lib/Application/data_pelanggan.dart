@@ -77,13 +77,6 @@ class _DataPelangganState extends State<DataPelanggan> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 20),
-                Center(
-                  child: Text(
-                    'Tambah Data Pelanggan',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                const SizedBox(height: 24),
 
                 // Nama
                 const Align(

@@ -59,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 50),
                 Center(
                   child: Text(
-                    'Register',
+                    'DAFTAR AKUN BARU ',
                     style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                   ),
                 ),

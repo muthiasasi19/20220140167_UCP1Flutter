@@ -242,8 +242,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Konfirmasi password tidak boleh kosong';
-                              } else if (value != passwordController.text) {
-                                return 'Password tidak sama';
                               }
                               return null;
                             },
@@ -259,12 +257,22 @@ class _RegisterPageState extends State<RegisterPage> {
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Pendaftaran berhasil!'),
-                          backgroundColor: Colors.green,
-                        ),
-                      );
+                      if (passwordController.text !=
+                          konfirmasiPasswordController.text) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Password tidak sama!'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Pendaftaran berhasil!'),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      }
                     }
                   },
                   style: ElevatedButton.styleFrom(

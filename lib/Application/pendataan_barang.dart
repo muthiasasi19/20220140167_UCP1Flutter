@@ -26,4 +26,45 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
     'Tenda': 70000,
     'Sepatu': 350000,
   };
+
+  void _pickDate() async {
+    final DateTime? date = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (date != null) {
+      setState(() {
+        selectedDate = date;
+      });
+    }
+  }
+
+  int hitungTotalHarga() {
+    int jumlah = int.tryParse(jumlahBarangController.text) ?? 0;
+    int harga = int.tryParse(hargaSatuanController.text) ?? 0;
+    return jumlah * harga;
+  }
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        isSubmitted = true;
+      });
+    }
+  }
+
+  // void _resetForm() {
+  //   _formKey.currentState!.reset();
+  //   setState(() {
+  //     selectedDate = null;
+  //     selectedJenisTransaksi = null;
+  //     selectedJenisBarang = null;
+  //     isSubmitted = false;
+  //   });
+  //   jumlahBarangController.clear();
+  //   hargaSatuanController.clear();
+  // }
 }

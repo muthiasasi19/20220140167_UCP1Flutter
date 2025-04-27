@@ -68,7 +68,6 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
   //   hargaSatuanController.clear();
   // }
 
-
   String formatTanggal(DateTime date) {
     return '${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year}';
   }
@@ -180,5 +179,109 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
           ),
           const SizedBox(height: 16),
 
-}
+          const Text(
+            'Jenis Barang',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 6),
+          DropdownButtonFormField<String>(
+            decoration: const InputDecoration(
+              hintText: 'Jenis Barang',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+            ),
+            value: selectedJenisBarang,
+            items:
+                barangDenganHarga.keys.map((value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+            onChanged: (value) {
+              setState(() {
+                selectedJenisBarang = value;
+                hargaSatuanController.text =
+                    barangDenganHarga[value!]!.toString();
+              });
+            },
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Pilih jenis barang';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 16),
 
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Jumlah Barang',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 6),
+                    TextFormField(
+                      controller: jumlahBarangController,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: 'Jumlah Barang',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Masukkan jumlah barang';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Harga Satuan',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 6),
+                    TextFormField(
+                      controller: hargaSatuanController,
+                      readOnly: true,
+                      decoration: const InputDecoration(
+                        hintText: 'Harga Satuan',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+
+          ElevatedButton(
+            onPressed: _submitForm,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              minimumSize: const Size.fromHeight(50),
+            ),
+            child: const Text('Simpan', style: TextStyle(fontSize: 18)),
+          ),
+        ],
+      ),
+    );
+  }
+}

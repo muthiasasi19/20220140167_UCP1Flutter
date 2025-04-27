@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ucp_satu/Application/piket_gudang.dart';
 import 'package:ucp_satu/Application/data_pelanggan.dart';
+import 'package:ucp_satu/Application/pendataan_barang.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -112,10 +113,20 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                     const SizedBox(height: 16),
-                    _menuButton(
-                      icon: Icons.receipt_long,
-                      title: 'Barang Masuk/Keluar',
-                      isFullWidth: true,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const PendataanBarangPage(),
+                          ),
+                        );
+                      },
+                      child: _menuButton(
+                        icon: Icons.receipt_long,
+                        title: 'Barang Masuk/Keluar',
+                        isFullWidth: true,
+                      ),
                     ),
                   ],
                 ),

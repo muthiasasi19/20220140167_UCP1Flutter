@@ -293,6 +293,9 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
         ),
         buildRow('Total Harga', formatRupiah(hitungTotalHarga())),
         const Spacer(),
+
+        const SizedBox(height: 30),
+
         ElevatedButton(
           onPressed: () {
             Navigator.pushReplacement(

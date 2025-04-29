@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                       radius: 30,
                       backgroundImage: AssetImage('assets/images/logo.png'),
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 20),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -67,9 +67,9 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-
+              const SizedBox(height: 70),
               Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(20),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Image.asset(
@@ -78,6 +78,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              const SizedBox(width: 55),
 
               // Menu Buttons
               Padding(

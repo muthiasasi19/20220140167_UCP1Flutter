@@ -482,6 +482,7 @@ class DetailPelanggan extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
           decoration: BoxDecoration(
+            color: Colors.white,
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(12),
           ),

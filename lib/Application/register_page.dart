@@ -46,7 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const Center(
                   child: CircleAvatar(
                     radius: 50,
-                    backgroundImage: AssetImage('assets/images/logo.jpg'),
+                    backgroundImage: AssetImage('assets/images/logo.png'),
                   ),
                 ),
                 const SizedBox(height: 40),

@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               const CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage('assets/images/logo.jpg'),
+                backgroundImage: AssetImage('assets/images/logo.png'),
               ),
               Text(
                 'SELAMAT DATANG KEMBALI',

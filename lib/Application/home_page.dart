@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     const CircleAvatar(
                       radius: 30,
-                      backgroundImage: AssetImage('assets/images/logo.jpg'),
+                      backgroundImage: AssetImage('assets/images/logo.png'),
                     ),
                     const SizedBox(width: 12),
                     Column(
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Image.asset(
-                    'assets/images/logo.jpg',
+                    'assets/images/produk.jpeg',
                     fit: BoxFit.cover,
                   ),
                 ),

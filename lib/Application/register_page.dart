@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ucp_satu/Application/login_page.dart';
 
+class AppColors {
+  static const Color merahTua = Color(0xFF63100E);
+  static const Color orens = Color(0xFFE9963E);
+}
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -34,6 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.orens,
       body: Form(
         key: _formKey,
         autovalidateMode: AutovalidateMode.disabled,
@@ -43,6 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 45),
                 const Center(
                   child: CircleAvatar(
                     radius: 50,
@@ -65,8 +72,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 6),
                 TextFormField(
                   controller: namalengkapController,
+                  style: const TextStyle(color: Colors.black),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
                     hintText: 'Nama Lengkap',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -96,9 +106,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: emailController,
+                            style: const TextStyle(color: Colors.black),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             decoration: const InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
                               hintText: 'Email',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -129,9 +142,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: noHPController,
+                            style: const TextStyle(color: Colors.black),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             decoration: const InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
                               hintText: 'No HP',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -168,10 +184,13 @@ class _RegisterPageState extends State<RegisterPage> {
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: passwordController,
+                            style: const TextStyle(color: Colors.black),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             obscureText: _obscurePassword,
                             decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
                               hintText: 'Password',
                               border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -214,10 +233,13 @@ class _RegisterPageState extends State<RegisterPage> {
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: konfirmasiPasswordController,
+                            style: const TextStyle(color: Colors.black),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             obscureText: _obscureKonfirmasiPassword,
                             decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
                               hintText: 'Konfirmasi Password',
                               border: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -261,8 +283,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           konfirmasiPasswordController.text) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('Password tidak sama!'),
-                            backgroundColor: Colors.red,
+                            content: Text(
+                              'Password tidak sama!',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                            backgroundColor: Colors.white,
                           ),
                         );
                       } else {
@@ -277,6 +302,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
+                    backgroundColor: AppColors.merahTua,
+                    foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

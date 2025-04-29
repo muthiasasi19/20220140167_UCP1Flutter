@@ -39,17 +39,20 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.orens,
-      body: Form(
+      body: SingleChildScrollView(
         key: _formKey,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(height: 50),
               const CircleAvatar(
-                radius: 50,
+                radius: 70,
                 backgroundImage: AssetImage('assets/images/logo.png'),
               ),
+              const SizedBox(height: 30),
+
               Text(
                 'SELAMAT DATANG KEMBALI',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -140,6 +143,8 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 child: const Text('Masuk'),
               ),
+
+              const SizedBox(height: 20),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

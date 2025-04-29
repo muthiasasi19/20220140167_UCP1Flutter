@@ -5,6 +5,11 @@ import 'package:ucp_satu/Application/pendataan_barang.dart';
 import 'package:ucp_satu/Application/login_page.dart';
 import 'package:flutter/services.dart';
 
+class AppColors {
+  static const Color merahTua = Color(0xFF63100E);
+  static const Color orens = Color(0xFFE9963E);
+}
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -16,14 +21,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.orens,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               // Header
               Container(
-                color: Colors.deepOrange,
+                color: AppColors.merahTua,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 16,
@@ -92,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                               );
                             },
                             child: _menuButton(
-                              icon: Icons.calendar_today,
+                              icon: Icons.assignment_add,
                               title: 'Data Piket',
                             ),
                           ),
@@ -109,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                               );
                             },
                             child: _menuButton(
-                              icon: Icons.group_add,
+                              icon: Icons.dashboard_customize,
                               title: 'Data Pelanggan',
                             ),
                           ),
@@ -151,7 +156,7 @@ class _HomePageState extends State<HomePage> {
       width: isFullWidth ? double.infinity : null,
       height: 120,
       decoration: BoxDecoration(
-        color: Colors.deepOrange,
+        color: AppColors.merahTua,
         borderRadius: BorderRadius.circular(20),
       ),
       padding: const EdgeInsets.all(16),

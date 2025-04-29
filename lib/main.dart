@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ucp_satu/Application/home_page.dart';
 import 'package:ucp_satu/Application/login_page.dart';
 
 void main() {

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ucp_satu/Application/home_page.dart';
 
+class AppColors {
+  static const Color merahTua = Color(0xFF63100E);
+  static const Color orens = Color(0xFFE9963E);
+}
+
 class PendataanBarangPage extends StatefulWidget {
   const PendataanBarangPage({super.key});
 
@@ -65,9 +70,13 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: isSubmitted ? Colors.white : AppColors.orens,
       appBar: AppBar(
-        title: const Text('Pendataan Barang'),
-        backgroundColor: Colors.red,
+        title: const Text(
+          'Pendataan Barang',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: AppColors.merahTua,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -112,6 +121,8 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
           const SizedBox(height: 6),
           DropdownButtonFormField<String>(
             decoration: const InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
               hintText: 'Jenis Transaksi',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -141,11 +152,13 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
 
           const Text(
             'Jenis Barang',
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
           ),
           const SizedBox(height: 6),
           DropdownButtonFormField<String>(
             decoration: const InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
               hintText: 'Jenis Barang',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -188,8 +201,11 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
                     const SizedBox(height: 6),
                     TextFormField(
                       controller: jumlahBarangController,
+                      style: const TextStyle(color: Colors.black),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
                         hintText: 'Jumlah Barang',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -217,8 +233,11 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
                     const SizedBox(height: 6),
                     TextFormField(
                       controller: hargaSatuanController,
+                      style: const TextStyle(color: Colors.black),
                       readOnly: true,
                       decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
                         hintText: 'Harga Satuan',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -235,10 +254,13 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
           ElevatedButton(
             onPressed: _submitForm,
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
+              backgroundColor: AppColors.merahTua,
               minimumSize: const Size.fromHeight(50),
             ),
-            child: const Text('Simpan', style: TextStyle(fontSize: 18)),
+            child: const Text(
+              'Simpan',
+              style: TextStyle(fontSize: 18, color: Colors.white),
+            ),
           ),
         ],
       ),
@@ -279,10 +301,13 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
             );
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red,
+            backgroundColor: AppColors.merahTua,
             minimumSize: const Size.fromHeight(50),
           ),
-          child: const Text('Selesai', style: TextStyle(fontSize: 18)),
+          child: const Text(
+            'Selesai',
+            style: TextStyle(fontSize: 18, color: Colors.white),
+          ),
         ),
       ],
     );
@@ -325,8 +350,11 @@ Widget buildInputField(
 }) {
   return TextFormField(
     controller: controller,
+    style: const TextStyle(color: Colors.black),
     readOnly: readOnly,
     decoration: InputDecoration(
+      filled: true,
+      fillColor: Colors.white,
       hintText: hintText,
       prefixIcon: prefixIcon,
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),

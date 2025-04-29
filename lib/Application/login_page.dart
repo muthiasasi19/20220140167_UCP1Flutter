@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ucp_satu/Application/home_page.dart';
 import 'package:ucp_satu/Application/register_page.dart';
 
+class AppColors {
+  static const Color merahTua = Color(0xFF63100E);
+  static const Color orens = Color(0xFFE9963E);
+}
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
   static String loggedInEmail = '';
@@ -33,6 +38,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.orens,
       body: Form(
         key: _formKey,
         child: Padding(
@@ -56,8 +62,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextFormField(
                 controller: emailController,
+                style: const TextStyle(color: Colors.black),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: const InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
                   hintText: 'Email',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -80,9 +89,12 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextFormField(
                 controller: passwordController,
+                style: const TextStyle(color: Colors.black),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
                   hintText: 'Password',
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(13)),
@@ -114,6 +126,8 @@ class _LoginPageState extends State<LoginPage> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
+                  backgroundColor: AppColors.merahTua,
+                  foregroundColor: Colors.white,
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {

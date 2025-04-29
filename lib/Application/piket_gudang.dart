@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucp_satu/Application/login_page.dart';
 
 class PiketGudang extends StatefulWidget {
   const PiketGudang({super.key});
@@ -10,21 +11,17 @@ class PiketGudang extends StatefulWidget {
 class _PiketGudangState extends State<PiketGudang> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _namaController = TextEditingController();
-  final TextEditingController _tugasController = TextEditingController();
-  DateTime? _selectedDate;
-  final List<Map<String, String>> _daftarTugas = [];
+  final TextEditingController _tanggalController = TextEditingController();
 
-  // Fungsi pilih tanggal DINONAKTIFKAN
-  Future<void> _pickDate() async {
-    // Dikosongkan dulu
-  }
+  final TextEditingController _tugasController = TextEditingController();
+  final List<Map<String, String>> _daftarTugas = [];
 
   void _tambahTugas() {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _daftarTugas.add({
           'nama': _namaController.text,
-          'tanggal': 'Tanggal belum dipilih',
+          'tanggal': _tanggalController.text,
           'tugas': _tugasController.text,
         });
         _tugasController.clear();
@@ -32,9 +29,16 @@ class _PiketGudangState extends State<PiketGudang> {
     }
   }
 
+  @override // Memanggil email
+  void initState() {
+    super.initState();
+    _namaController.text = LoginPage.loggedInEmail;
+  }
+
   @override
   void dispose() {
     _namaController.dispose();
+    _tanggalController.dispose();
     _tugasController.dispose();
     super.dispose();
   }
@@ -64,12 +68,12 @@ class _PiketGudangState extends State<PiketGudang> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Nama Anggota'),
+                Text('Nama Anggota'),
                 const SizedBox(height: 8),
                 TextFormField(
                   controller: _namaController,
+                  readOnly: true,
                   decoration: InputDecoration(
-                    hintText: 'Admin',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -87,18 +91,27 @@ class _PiketGudangState extends State<PiketGudang> {
                   },
                 ),
                 const SizedBox(height: 20),
-                const Text('Pilih Tanggal'),
-                const SizedBox(height: 8),
-                TextFormField(
-                  enabled: false,
-                  decoration: InputDecoration(
-                    hintText: 'Fitur ini belum aktif',
-                    prefixIcon: const Icon(Icons.calendar_today),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
+                buildLabel('Pilih Tanggal'),
+                buildInputField(
+                  _tanggalController,
+                  readOnly: true,
+                  prefixIcon: const Icon(Icons.calendar_today),
+                  hintText: 'Pilih tanggal ',
+                  onTap: () async {
+                    DateTime? pickedDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2101),
+                    );
+                    if (pickedDate != null) {
+                      _tanggalController.text =
+                          "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                    }
+                  },
+                  isTanggal: true,
                 ),
+
                 const SizedBox(height: 20),
                 const Text('Tugas Piket'),
                 const SizedBox(height: 8),
@@ -111,7 +124,7 @@ class _PiketGudangState extends State<PiketGudang> {
                         child: TextFormField(
                           controller: _tugasController,
                           decoration: InputDecoration(
-                            hintText: 'Menyapu',
+                            hintText: 'Tugas Piket',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
                             ),
@@ -185,6 +198,12 @@ class _PiketGudangState extends State<PiketGudang> {
                               tugas['tugas'] ?? '',
                               style: const TextStyle(color: Colors.white),
                             ),
+
+                            trailing: const Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.white,
+                              size: 16,
+                            ),
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -209,6 +228,43 @@ class _PiketGudangState extends State<PiketGudang> {
       ),
     );
   }
+}
+
+// Tambahin fungsi buildLabel
+Widget buildLabel(String text) {
+  return Text(
+    text,
+    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+  );
+}
+
+// Tambahin fungsi buildInputField
+Widget buildInputField(
+  TextEditingController controller, {
+  bool readOnly = false,
+  Widget? prefixIcon,
+  String? hintText,
+  VoidCallback? onTap,
+  bool isTanggal = false,
+}) {
+  return TextFormField(
+    controller: controller,
+    readOnly: readOnly,
+    decoration: InputDecoration(
+      hintText: hintText,
+      prefixIcon: prefixIcon,
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+    ),
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return isTanggal
+            ? 'Tanggal tidak boleh kosong'
+            : 'Field tidak boleh kosong';
+      }
+      return null;
+    },
+    onTap: onTap,
+  );
 }
 
 // DETAIL PIKET

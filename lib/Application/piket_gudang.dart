@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ucp_satu/Application/login_page.dart';
 
+class AppColors {
+  static const Color merahTua = Color(0xFF63100E);
+  static const Color orens = Color(0xFFE9963E);
+}
+
 class PiketGudang extends StatefulWidget {
   const PiketGudang({super.key});
 
@@ -46,8 +51,9 @@ class _PiketGudangState extends State<PiketGudang> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.orens,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: AppColors.merahTua,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
@@ -73,7 +79,10 @@ class _PiketGudangState extends State<PiketGudang> {
                 TextFormField(
                   controller: _namaController,
                   readOnly: true,
+                  style: const TextStyle(color: Colors.black),
                   decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -123,7 +132,10 @@ class _PiketGudangState extends State<PiketGudang> {
                         height: 56,
                         child: TextFormField(
                           controller: _tugasController,
+                          style: const TextStyle(color: Colors.black),
                           decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
                             hintText: 'Tugas Piket',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
@@ -151,7 +163,7 @@ class _PiketGudangState extends State<PiketGudang> {
                         child: ElevatedButton(
                           onPressed: _tambahTugas,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red,
+                            backgroundColor: AppColors.merahTua,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16),
                             ),
@@ -190,7 +202,7 @@ class _PiketGudangState extends State<PiketGudang> {
                         return Container(
                           margin: const EdgeInsets.only(bottom: 10),
                           decoration: BoxDecoration(
-                            color: Colors.orange,
+                            color: AppColors.merahTua,
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: ListTile(
@@ -250,7 +262,10 @@ Widget buildInputField(
   return TextFormField(
     controller: controller,
     readOnly: readOnly,
+    style: const TextStyle(color: Colors.black),
     decoration: InputDecoration(
+      filled: true,
+      fillColor: Colors.white,
       hintText: hintText,
       prefixIcon: prefixIcon,
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
@@ -283,9 +298,9 @@ class DetailPiket extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.orens,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: AppColors.merahTua,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
@@ -308,7 +323,7 @@ class DetailPiket extends StatelessWidget {
                 Text(
                   tanggal,
                   style: const TextStyle(
-                    color: Colors.orange,
+                    color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -320,7 +335,7 @@ class DetailPiket extends StatelessWidget {
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.orange,
+                    color: AppColors.merahTua,
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Text(
@@ -338,7 +353,7 @@ class DetailPiket extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.orange,
+                color: AppColors.merahTua,
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Text(

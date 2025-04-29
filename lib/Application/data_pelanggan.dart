@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ucp_satu/Application/home_page.dart';
 
+class AppColors {
+  static const Color merahTua = Color(0xFF63100E);
+  static const Color orens = Color(0xFFE9963E);
+}
+
 class DataPelanggan extends StatefulWidget {
   const DataPelanggan({super.key});
 
@@ -57,9 +62,9 @@ class _DataPelangganState extends State<DataPelanggan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFDF6F6),
+      backgroundColor: AppColors.orens,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: AppColors.merahTua,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
@@ -105,8 +110,11 @@ class _DataPelangganState extends State<DataPelanggan> {
                 const SizedBox(height: 6),
                 TextFormField(
                   controller: namaController,
+                  style: const TextStyle(color: Colors.black),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
                     hintText: 'Nama Cust',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -139,9 +147,12 @@ class _DataPelangganState extends State<DataPelanggan> {
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: emailController,
+                            style: const TextStyle(color: Colors.black),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             decoration: const InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
                               hintText: 'Email',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -175,9 +186,12 @@ class _DataPelangganState extends State<DataPelanggan> {
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: noTeleponController,
+                            style: const TextStyle(color: Colors.black),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             decoration: const InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
                               hintText: ' No Telepon',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -211,8 +225,11 @@ class _DataPelangganState extends State<DataPelanggan> {
                 const SizedBox(height: 6),
                 TextFormField(
                   controller: alamatController,
+                  style: const TextStyle(color: Colors.black),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
                     hintText: 'Alamat',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -246,9 +263,12 @@ class _DataPelangganState extends State<DataPelanggan> {
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: provinsiController,
+                            style: const TextStyle(color: Colors.black),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             decoration: const InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
                               hintText: 'Provinsi',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -282,9 +302,12 @@ class _DataPelangganState extends State<DataPelanggan> {
                           const SizedBox(height: 6),
                           TextFormField(
                             controller: kodePosController,
+                            style: const TextStyle(color: Colors.black),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             decoration: const InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
                               hintText: ' Kode Pos',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -328,7 +351,7 @@ class _DataPelangganState extends State<DataPelanggan> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: AppColors.merahTua,
                     minimumSize: const Size.fromHeight(50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -397,9 +420,9 @@ class DetailPelanggan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFDF6F6),
+      backgroundColor: AppColors.orens,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: AppColors.merahTua,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {

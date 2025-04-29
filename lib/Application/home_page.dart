@@ -3,6 +3,7 @@ import 'package:ucp_satu/Application/piket_gudang.dart';
 import 'package:ucp_satu/Application/data_pelanggan.dart';
 import 'package:ucp_satu/Application/pendataan_barang.dart';
 import 'package:ucp_satu/Application/login_page.dart';
+import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -36,13 +37,13 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(width: 12),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'Selamat Datang',
                           style: TextStyle(color: Colors.white, fontSize: 14),
                         ),
                         Text(
-                          'Admin',
+                          LoginPage.loggedInEmail,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -54,12 +55,7 @@ class _HomePageState extends State<HomePage> {
                     const Spacer(),
                     IconButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
-                          ),
-                        );
+                        SystemNavigator.pop(); //  keluar dari aplikasi
                       },
                       icon: const Icon(Icons.logout, color: Colors.white),
                     ),

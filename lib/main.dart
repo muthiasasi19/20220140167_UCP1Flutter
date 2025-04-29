@@ -7,7 +7,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // Knp pakai Stateless
   const MyApp({super.key});
 
   @override
@@ -18,10 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       initialRoute: '/login',
-      routes: {
-        '/login': (context) => const LoginPage(),
-        '/home': (context) => const HomePage(),
-      },
+      routes: {'/login': (context) => const LoginPage()},
     );
   }
 }

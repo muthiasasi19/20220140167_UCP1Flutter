@@ -11,6 +11,7 @@ class PendataanBarangPage extends StatefulWidget {
 class _PendataanBarangPageState extends State<PendataanBarangPage> {
   final _formKey = GlobalKey<FormState>();
 
+  final TextEditingController tanggalController = TextEditingController();
   DateTime? selectedDate;
   String? selectedJenisTransaksi;
   String? selectedJenisBarang;
@@ -27,21 +28,6 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
     'Sepatu': 350000,
   };
 
-  void _pickDate() async {
-    final DateTime? date = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
-    );
-
-    if (date != null) {
-      setState(() {
-        selectedDate = date;
-      });
-    }
-  }
-
   int hitungTotalHarga() {
     int jumlah = int.tryParse(jumlahBarangController.text) ?? 0;
     int harga = int.tryParse(hargaSatuanController.text) ?? 0;
@@ -56,22 +42,6 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
     }
   }
 
-  // void _resetForm() {
-  //   _formKey.currentState!.reset();
-  //   setState(() {
-  //     selectedDate = null;
-  //     selectedJenisTransaksi = null;
-  //     selectedJenisBarang = null;
-  //     isSubmitted = false;
-  //   });
-  //   jumlahBarangController.clear();
-  //   hargaSatuanController.clear();
-  // }
-
-  String formatTanggal(DateTime date) {
-    return '${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year}';
-  }
-
   String formatRupiah(int value) {
     String result = value.toString().replaceAllMapped(
       RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
@@ -80,8 +50,13 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
     return 'Rp $result';
   }
 
+  String formatTanggal(DateTime date) {
+    return "${date.day}/${date.month}/${date.year}";
+  }
+
   @override
   void dispose() {
+    tanggalController.dispose();
     jumlahBarangController.dispose();
     hargaSatuanController.dispose();
     super.dispose();
@@ -106,42 +81,27 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
       key: _formKey,
       child: ListView(
         children: [
-          GestureDetector(
-            onTap: _pickDate,
-            child: AbsorbPointer(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Tanggal',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 6),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: 'Tanggal',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      prefixIcon: Icon(Icons.calendar_today),
-                    ),
-
-                    controller: TextEditingController(
-                      text:
-                          selectedDate != null
-                              ? formatTanggal(selectedDate!)
-                              : '',
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Pilih tanggal';
-                      }
-                      return null;
-                    },
-                  ),
-                ],
-              ),
-            ),
+          buildLabel('Pilih Tanggal'),
+          buildInputField(
+            tanggalController,
+            readOnly: true,
+            prefixIcon: const Icon(Icons.calendar_today),
+            hintText: 'Pilih tanggal',
+            onTap: () async {
+              DateTime? pickedDate = await showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2101),
+              );
+              if (pickedDate != null) {
+                setState(() {
+                  selectedDate = pickedDate;
+                  tanggalController.text = formatTanggal(pickedDate);
+                });
+              }
+            },
+            isTanggal: true,
           ),
           const SizedBox(height: 16),
 
@@ -346,4 +306,39 @@ class _PendataanBarangPageState extends State<PendataanBarangPage> {
       ],
     );
   }
+}
+
+Widget buildLabel(String text) {
+  return Text(
+    text,
+    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+  );
+}
+
+Widget buildInputField(
+  TextEditingController controller, {
+  bool readOnly = false,
+  Widget? prefixIcon,
+  String? hintText,
+  VoidCallback? onTap,
+  bool isTanggal = false,
+}) {
+  return TextFormField(
+    controller: controller,
+    readOnly: readOnly,
+    decoration: InputDecoration(
+      hintText: hintText,
+      prefixIcon: prefixIcon,
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+    ),
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return isTanggal
+            ? 'Tanggal tidak boleh kosong'
+            : 'Field tidak boleh kosong';
+      }
+      return null;
+    },
+    onTap: onTap,
+  );
 }

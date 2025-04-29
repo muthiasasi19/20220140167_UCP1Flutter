@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ucp_satu/Application/home_page.dart';
 
 class DataPelanggan extends StatefulWidget {
   const DataPelanggan({super.key});
@@ -44,6 +45,8 @@ class _DataPelangganState extends State<DataPelanggan> {
         emailController.clear();
         noTeleponController.clear();
         alamatController.clear();
+        provinsiController.clear();
+        kodePosController.clear();
       });
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Pelanggan berhasil ditambahkan')),
@@ -54,20 +57,26 @@ class _DataPelangganState extends State<DataPelanggan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFFDF6F6),
       appBar: AppBar(
         backgroundColor: Colors.red,
-        title: const Text(
-          'Data Pelanggan',
-          style: TextStyle(color: Colors.white),
-        ),
-        centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),
+              (Route<dynamic> route) => false,
+            );
           },
         ),
+        title: const Text(
+          'Tambah Pelanggan',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -300,14 +309,35 @@ class _DataPelangganState extends State<DataPelanggan> {
 
                 // Tombol Simpan
                 ElevatedButton(
-                  onPressed: tambahPelanggan,
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => DetailPelanggan(
+                                nama: namaController.text,
+                                email: emailController.text,
+                                noTelepon: noTeleponController.text,
+                                alamat: alamatController.text,
+                                provinsi: provinsiController.text,
+                                kodePos: kodePosController.text,
+                              ),
+                        ),
+                      );
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
                     minimumSize: const Size.fromHeight(50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: const Text('Simpan ', style: TextStyle(fontSize: 18)),
+                  child: const Text(
+                    'Simpan',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
                 ),
 
                 const SizedBox(height: 30),
@@ -341,6 +371,101 @@ class _DataPelangganState extends State<DataPelanggan> {
           ),
         ),
       ),
+    );
+  }
+}
+
+// DETAIL PELANGGAN
+class DetailPelanggan extends StatelessWidget {
+  final String nama;
+  final String email;
+  final String noTelepon;
+  final String alamat;
+  final String provinsi;
+  final String kodePos;
+
+  const DetailPelanggan({
+    super.key,
+    required this.nama,
+    required this.email,
+    required this.noTelepon,
+    required this.alamat,
+    required this.provinsi,
+    required this.kodePos,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFFDF6F6),
+      appBar: AppBar(
+        backgroundColor: Colors.red,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),
+              (Route<dynamic> route) => false,
+            );
+          },
+        ),
+        title: const Text(
+          'Detail Pelanggan',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            CircleAvatar(
+              radius: 60,
+              backgroundImage: AssetImage('assets/images/logo.jpg'),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              nama,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            Text(email, style: const TextStyle(fontSize: 16)),
+            const SizedBox(height: 4),
+            Text(noTelepon, style: const TextStyle(fontSize: 16)),
+            const SizedBox(height: 24),
+            _buildDetailField('Alamat', alamat),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(child: _buildDetailField('Provinsi', provinsi)),
+                const SizedBox(width: 12),
+                Expanded(child: _buildDetailField('Kode Pos', kodePos)),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDetailField(String label, String value) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
+        const SizedBox(height: 6),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          width: double.infinity,
+          child: Text(value),
+        ),
+      ],
     );
   }
 }

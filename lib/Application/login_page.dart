@@ -4,6 +4,7 @@ import 'package:ucp_satu/Application/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+  static String loggedInEmail = '';
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -45,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Text(
                 'SELAMAT DATANG KEMBALI',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 24),
 
@@ -116,6 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    LoginPage.loggedInEmail = emailController.text;
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => const HomePage()),
